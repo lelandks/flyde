@@ -47,7 +47,7 @@ The first argument of the `run` function is an object containing the values of t
 Flyde use of RxJS is _very_ simplistic and should be treated as a mere implementation detail. You don't need to know RxJS to create custom nodes. Neither should you rely on a full RxJS API being available in your custom nodes.
 :::
 
-The `run` function also accepts a third argument, which is an object containing advanced utilities to help author more complex custom nodes. One of these utilities is the `state` object, which gives the node access to state that will be available to it while the flow is running. The `state` object is `Map&lt;string, any&gt;`.
+The `run` function also accepts a third argument, which is an object containing advanced utilities to help author more complex custom nodes. One of these utilities is the `state` object, which gives the node access to state that will be available to it while the flow is running. The `state` object is `Map<string, any>`.
 
 For example, the following custom node will emit the average of all the numbers it received since the flow started:
 
@@ -86,7 +86,7 @@ It will appear on the "Current project" section of the "nodes library -> view al
 
 Macro nodes are code nodes with **edit-time configuration**. Use them when an instance's configuration should change its pins, display text, or runtime behavior.
 
-In the current API, define a macro node as a `CodeNode&lt;Config&gt;` with `mode: "advanced"`.
+In the current API, define a macro node as a `CodeNode<Config>` with `mode: "advanced"`.
 
 ### Basic structure
 
@@ -97,7 +97,7 @@ interface FanOutConfig {
   count: number;
 }
 
-export const FanOut: CodeNode&lt;FanOutConfig&gt; = {
+export const FanOut: CodeNode<FanOutConfig> = {
   id: "FanOut",
   mode: "advanced",
 
@@ -120,7 +120,7 @@ export const FanOut: CodeNode&lt;FanOutConfig&gt; = {
   displayName: (config) => `Fan out to ${config.count} outputs`,
 
   run: ({ value }, outputs, { context }) => {
-    for (let index = 0; index &lt; context.config.count; index++) {
+    for (let index = 0; index < context.config.count; index++) {
       outputs[`item${index + 1}`].next(value);
     }
   },
